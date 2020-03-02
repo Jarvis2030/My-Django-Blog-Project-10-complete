@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %} <!-- We are extending our blog template in our register templates, this enables us to refernce templates from our blog app-Very nice -->
+{% block content %}
+	<!-- <h1>Blog home!</h1> -->
+	<!-- Open a codeblock using the %% to create a for loop and then access the variables in the views created before-->
+	<div class="content-section">
+		<form method="POST">
+			{% csrf_token %} <!--cross site request fogery are to secure our website against reverse engineering-->
+			<fieldset class="form-group"> <!--To group related elements in a form-->
+				<legend class="border-bottom mb-4">Delete Your Post</legend>
+				<!-- {{ form.as_p }}  To acces the form variable that we passed in the context and render it in paragraph forms -->
+				<h2>Are you sure you want to Delete "{{ object.title }}"  post?</h2>
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-danger" type="submit">Confirm Delete</button>
+				<a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+
+			</div>
+		</form>
+	</div>
+{% endblock content %}
